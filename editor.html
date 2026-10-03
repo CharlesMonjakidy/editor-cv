@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editeur - Mon CV</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <div class="haut"><i></i><i></i><i></i></div>
+    <div class="grid haut"></div>
+    <header class="top haut">
+        <a class="lien" href="index.html"><b>CV</b>Mon</a>
+        <div class="modes">
+            <div class="choix" role="groupe" aria-label="Modèle">
+            <button class="on">Moderne</button>
+            <button>Classique</button>
+            </div>
+
+            <label class="color">Couleur <input type="color" id="color" value="#6d4aff"></label>
+            <button id="theme" class="save">☀️</button>
+            <span class="userbox" id="userbox"></span>
+            <button class="save">Sauvegarder .json</button>
+            <button class="telecharger">Télécharger le PDF</button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <form id="form" class="formulaire" autocomplete="off" onsubmit="return false">
+            <div class="score">
+                <div class="ring" id="ring"><span id="ringTxt">0%</span></div>
+                <div><b>Assistant</b>
+                <small id="tip"></small></div>
+            </div>
+            <section>
+                <h2>Identité</h2>
+                <label>Nom complet <input data-k="name" placeholder="Charles MONJAKIDY"></label>
+                <label>Titre <input data-k="title" placeholder="Étudiante en Licence informatique"></label>
+                    <div class="contact">
+                        <label>Email <input data-k="email" type="email" placeholder="tonnom@mail.com"></label>
+                        <label>Téléphone <input data-k="phone" placeholder="0344494144"></label>
+                    </div>
+                <label>Ville <input data-k="city" placeholder="Toliara"></label>
+                <label>Photo <input type="file" id="photo" accept="image/*"></label>
+                <label>Résumé <textarea data-k="summary" rows="3" placeholder="2 ou 3 phrases sur toi et ce que tu cherches"></textarea></label>
+            </section>
+
+            <section>
+                <h2>Expériences</h2>
+                <div id="exp"></div>
+                <button type="button" class="add" data-add="exp">+ Ajouter une expérience</button>
+            </section>
+
+            <section>
+                <h2>Formations</h2>
+                <div id="edu"></div>
+                <button type="button" class="add" data-add="edu">+ Ajouter une formation</button>
+            </section>
+
+            <section>
+                <h2>Compétences et langues</h2>
+                <label>Compétences (séparées par des virgules) <input data-k="skills" placeholder="HTML, CSS, JavaScript, Travail d'équipe"></label>
+                <label>Langues <input data-k="langs" placeholder="Français (natif), Anglais (B2)"></label>
+            </section>
+            <button type="button" id="reset" class="ghost">Tout effacer</button>
+        </form>
+            
+        <div class="stage"><div id="cv" class="cv"></div></div>
+    </main>
+</body>
+</html>
