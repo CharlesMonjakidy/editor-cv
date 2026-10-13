@@ -1,71 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editeur - Mon CV</title>
-    <link rel="stylesheet" href="CSS/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06070d">
+<title>Éditeur – Mon CV</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/templates.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <div class="haut"><i></i><i></i><i></i></div>
-    <div class="grid haut"></div>
-    <header class="top haut">
-        <a class="lien" href="index.html"><b>CV</b>Mon</a>
-        <div class="modes">
-            <div class="choix" role="groupe" aria-label="Modèle">
-            <button class="on">Moderne</button>
-            <button>Classique</button>
-            </div>
+<div class="arriere-lumiere sans-impression"><i></i><i></i><i></i></div><div class="grille-fond sans-impression"></div>
+<header class="barre-superieure sans-impression">
+  <a class="marque" href="index.html"><b>CV</b>Mon CV</a>
+  <div class="outils">
+    <div class="groupe-segments" role="group" aria-label="Modèle">
+      <button data-tpl="moderne" class="actif">Moderne</button>
+      <button data-tpl="classique">Classique</button>
+    </div>
+    <label class="choix-couleur">Couleur <input type="choix-couleur" id="choix-couleur" value="#6d4aff"></label>
+    <button id="theme" class="bouton-discret" aria-label="Changer le thème">☀️</button>
+    <span class="zone-utilisateur" id="zone-utilisateur"></span>
+    <button id="json" class="bouton-discret">Sauvegarde .json</button>
+    <button id="print" class="bouton-principal">Télécharger le PDF</button>
+  </div>
+</header>
 
-            <label class="color">Couleur <input type="color" id="color" value="#6d4aff"></label>
-            <button id="theme" class="save">☀️</button>
-            <span class="userbox" id="userbox"></span>
-            <button class="save">Sauvegarder .json</button>
-            <button class="telecharger">Télécharger le PDF</button>
-        </div>
-    </header>
+<main class="mise-en-page">
+  <form id="form" class="panneau projecteur sans-impression" autocomplete="off" onsubmit="return false">
+    <div class="score-cv">
+      <div class="cercle-score" id="cercle-score"><span id="ringTxt">0%</span></div>
+      <div><b>Assistant CV</b><small id="tip"></small></div>
+    </div>
+    <section>
+      <h2>Identité</h2>
+      <label>Nom complet <input data-k="name" placeholder="Votre nom complet"></label>
+      <label>Titre <input data-k="title" placeholder="Étudiante en LMD en informatique"></label>
+      <div class="ligne-champs">
+        <label>Email <input data-k="email" type="email" placeholder="votrenom@gmail.com"></label>
+        <label>Téléphone <input data-k="phone" placeholder="034 12 345 78"></label>
+      </div>
+      <label>Ville <input data-k="city" placeholder="Toliara"></label>
+      <label>Photo <input type="file" id="photo" accept="image/*"></label>
+      <!-- Loisirs affichés dans la colonne gauche du modèle moderne. -->
+      <label>Loisirs <input data-k="loisirs" placeholder="Sport, lecture, musique, voyage"></label>
+      <!-- Liens professionnels et réseaux sociaux. -->
+      <div class="ligne-champs">
+        <label>LinkedIn <input data-k="linkedin" type="url" placeholder="https://linkedin.com/in/monprofil"></label>
+        <label>Twitter / X <input data-k="twitter" type="url" placeholder="https://x.com/monprofil"></label>
+      </div>
+      <div class="ligne-champs">
+        <label>GitHub <input data-k="github" type="url" placeholder="https://github.com/monprofil"></label>
+        <label>Site web <input data-k="website" type="url" placeholder="https://monsite.com"></label>
+      </div>
+      <label>Résumé <textarea data-k="summary" rows="3" placeholder="2 ou 3 phrases sur toi et ce que tu cherches"></textarea></label>
+    </section>
+    <section>
+      <h2>Expériences</h2>
+      <div id="exp"></div>
+      <button type="bouton" class="bouton-ajouter" data-add="exp">+ Ajouter une expérience</button>
+    </section>
+    <section>
+      <h2>Formations</h2>
+      <div id="edu"></div>
+      <button type="bouton" class="bouton-ajouter" data-add="edu">+ Ajouter une formation</button>
+    </section>
+    <section>
+      <h2>Compétences et langues</h2>
+      <label>Compétences (séparées par des virgules) <input data-k="skills" placeholder="HTML, CSS, JavaScript, Travail d'équipe"></label>
+      <label>Langues <input data-k="langs" placeholder="Français (natif), Anglais (B2)"></label>
+    </section>
+    <button type="bouton" id="reset" class="bouton-discret">Tout effacer</button>
+  </form>
+  <div class="zone-apercu"><div id="apercu-cv" class="apercu-cv"></div></div>
+</main>
 
-    <main class="layout">
-        <form id="form" class="formulaire" autocomplete="off" onsubmit="return false">
-            <div class="score">
-                <div class="ring" id="ring"><span id="ringTxt">0%</span></div>
-                <div><b>Assistant</b>
-                <small id="tip"></small></div>
-            </div>
-            <section>
-                <h2>Identité</h2>
-                <label>Nom complet <input data-k="name" placeholder="Charles MONJAKIDY"></label>
-                <label>Titre <input data-k="title" placeholder="Étudiante en Licence informatique"></label>
-                    <div class="contact">
-                        <label>Email <input data-k="email" type="email" placeholder="tonnom@mail.com"></label>
-                        <label>Téléphone <input data-k="phone" placeholder="0344494144"></label>
-                    </div>
-                <label>Ville <input data-k="city" placeholder="Toliara"></label>
-                <label>Photo <input type="file" id="photo" accept="image/*"></label>
-                <label>Résumé <textarea data-k="summary" rows="3" placeholder="2 ou 3 phrases sur toi et ce que tu cherches"></textarea></label>
-            </section>
+<div class="fenetre-modale sans-impression" id="fenetre-modale" hidden>
+  <div class="carte halo">
+    <button class="bouton-fermer" data-close aria-label="Fermer">✕</button>
+    <h3 id="mtitle">Connexion</h3>
+    <p>Connecte-toi pour télécharger ton CV.</p>
+    <div class="groupe-segments"><button data-mode="login" class="actif">Connexion</button><button data-mode="signup">Inscription</button></div>
+    <form id="authform">
+      <label id="nameRow" hidden>Prénom <input id="aname" placeholder="Camille"></label>
+      <label>Email <input id="amail" type="email" required placeholder="camille@mail.com"></label>
+      <label>Mot de passe <input id="apass" type="password" minlength="4" required></label>
+      <p class="message-erreur" id="aerr"></p>
+      <button class="bouton-principal pleine-largeur">Continuer</button>
+    </form>
+    <small>Compte enregistré uniquement sur cet appareil (démo).</small>
+  </div>
+</div>
+<div class="notification sans-impression" id="notification" role="status"></div>
 
-            <section>
-                <h2>Expériences</h2>
-                <div id="exp"></div>
-                <button type="button" class="add" data-add="exp">+ Ajouter une expérience</button>
-            </section>
-
-            <section>
-                <h2>Formations</h2>
-                <div id="edu"></div>
-                <button type="button" class="add" data-add="edu">+ Ajouter une formation</button>
-            </section>
-
-            <section>
-                <h2>Compétences et langues</h2>
-                <label>Compétences (séparées par des virgules) <input data-k="skills" placeholder="HTML, CSS, JavaScript, Travail d'équipe"></label>
-                <label>Langues <input data-k="langs" placeholder="Français (natif), Anglais (B2)"></label>
-            </section>
-            <button type="button" id="reset" class="ghost">Tout effacer</button>
-        </form>
-            
-        <div class="stage"><div id="cv" class="cv"></div></div>
-    </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/preview.js"></script>
+<script src="js/form.js"></script>
+<script src="js/ui.js"></script>
 </body>
 </html>

@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06070d">
+<title>Mon CV – Éditeur de CV en ligne</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/templates.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    
+<div class="arriere-lumiere"><i></i><i></i><i></i></div><div class="grille-fond"></div>
+<header class="barre-superieure">
+  <a class="marque" href="index.html"><b>CV</b>Mon CV</a>
+  <div class="outils"><button id="theme" class="bouton-discret" aria-label="Changer le thème">☀️</button><a class="bouton bouton-principal" href="editor.html">Créer mon CV</a></div>
+</header>
+<main>
+  <section class="section-accueil">
+    <div>
+      <span class="badge-info"><i></i>Aperçu en direct · PDF en un clic</span>
+      <h2>Ton CV <span class="texte-degrade"><span id="type">en direct</span></span><span class="curseur-frappe"></span></h2>
+      <p>Remplis le formulaire, regarde ton CV se construire sous tes yeux, choisis ton style et télécharge-le en PDF. Gratuit, sans prise de tête.</p>
+      <a class="bouton bouton-principal" href="editor.html">Commencer maintenant</a>
+    </div>
+    <div class="zone-visuelle">
+      <div class="maquette halo">
+        <div class="colonne-maquette">
+          <div class="avatar-maquette"></div>
+          <div class="ligne-maquette"></div>
+          <div class="ligne-maquette" style="width:70%"></div>
+          <div class="ligne-maquette" style="width:85%"></div>
+        </div>
+        <div class="contenu-maquette">
+          <div class="titre-maquette"></div>
+          <div class="ligne-maquette"></div>
+          <div class="ligne-maquette" style="width:90%"></div>
+          <div class="ligne-maquette" style="width:60%"></div>
+          <div class="titre-maquette" style="width:35%;margin-top:22px"></div>
+          <div class="ligne-maquette"></div>
+          <div class="ligne-maquette" style="width:80%"></div>
+        </div>
+      </div>
+      <span class="etiquette-flottante flottante-a">✓ Export PDF</span>
+      <span class="etiquette-flottante flottante-b">🌙 Mode sombre</span>
+      <span class="etiquette-flottante flottante-c">⚡ Temps réel</span>
+    </div>
+  </section>
+  <section class="avantages">
+    <div class="projecteur apparition"><em>⚡</em><b>Aperçu instantané</b><span>Chaque lettre tapée apparaît tout de suite dans le CV.</span></div>
+    <div class="projecteur apparition" style="--d:.1s"><em>🎨</em><b>2 modèles</b><span>Moderne ou classique, avec la couleur de ton choix.</span></div>
+    <div class="projecteur apparition" style="--d:.2s"><em>🧭</em><b>Assistant CV</b><span>Un score de complétion et des conseils pour l'améliorer.</span></div>
+    <div class="projecteur apparition" style="--d:.3s"><em>📱</em><b>Partout</b><span>Téléphone, tablette ou ordinateur : tout s'adapte.</span></div>
+  </section>
+</main>
+<footer>Projet d'équipe · HTML, CSS, JavaScript</footer>
+<script src="js/ui.js"></script>
 </body>
 </html>

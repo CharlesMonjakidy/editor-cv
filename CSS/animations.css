@@ -1,0 +1,231 @@
+/* ==================== ANIMATIONS ==================== */
+/* Animations (fichier séparé) */
+@property --ang {
+  syntax:'<angle>';
+  inherits:false;
+  initial-value:0deg
+}
+
+@property --p {
+  syntax:'<number>';
+  inherits:true;
+  initial-value:0
+}
+
+@keyframes drift1 {
+  to {
+    transform:translate(12vmax,8vmax) scale(1.15)
+  }
+
+}
+@keyframes drift2 {
+  to {
+    transform:translate(-10vmax,-10vmax) scale(1.2)
+  }
+
+}
+@keyframes drift3 {
+  to {
+    transform:translate(-14vmax,6vmax) scale(0.85)
+  }
+
+}
+.arriere-lumiere i:nth-child(1) {
+  animation:drift1 18s ease-in-out infinite alternate
+}
+
+.arriere-lumiere i:nth-child(2) {
+  animation:drift2 22s ease-in-out infinite alternate
+}
+
+.arriere-lumiere i:nth-child(3) {
+  animation:drift3 16s ease-in-out infinite alternate
+}
+
+@keyframes flow {
+  to {
+    background-position:250% 0
+  }
+
+}
+.texte-degrade {
+  animation:flow 6s linear infinite
+}
+
+@keyframes spin {
+  to {
+    --ang:360deg
+  }
+
+}
+.halo::before {
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1px;
+  pointer-events:none;
+  background:conic-gradient(from var(--ang),transparent 55%,rgb(124, 92, 255),rgb(34, 211, 238),rgb(244, 114, 182),transparent);
+  -webkit-mask:linear-gradient(rgb(0, 0, 0) 0 0) content-box,linear-gradient(rgb(0, 0, 0) 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  animation:spin 5s linear infinite
+}
+
+@keyframes shine {
+  0% {
+    transform:translateX(-120%)
+  }
+
+  60%,100% {
+    transform:translateX(220%)
+  }
+
+}
+.bouton-principal::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  width:40%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,0.45),transparent);
+  transform:translateX(-120%);
+  animation:shine 3.2s ease-in-out infinite
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow:0 0 0 0 rgba(52,211,153,0.6)
+  }
+
+  100% {
+    box-shadow:0 0 0 10px rgba(52,211,153,0)
+  }
+
+}
+.badge-info i {
+  animation:pulse 1.6s infinite
+}
+
+@keyframes float {
+  50% {
+    transform:translateY(-12px)
+  }
+
+}
+.etiquette-flottante.a {
+  animation:float 5s ease-in-out infinite
+}
+
+.etiquette-flottante.b {
+  animation:float 6s ease-in-out -2s infinite
+}
+
+.etiquette-flottante.c {
+  animation:float 7s ease-in-out -4s infinite
+}
+
+.maquette .ligne-maquette {
+  position:relative;
+  overflow:hidden
+}
+
+.maquette .ligne-maquette::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent,rgba(124,92,255,0.5),transparent);
+  transform:translateX(-100%);
+  animation:shine 2.4s infinite
+}
+
+.curseur-frappe {
+  display:inline-block;
+  width:3px;
+  height:0.9em;
+  margin-left:4px;
+  background:rgb(34, 211, 238);
+  vertical-align:-0.05em;
+  animation:blink 1s steps(2) infinite
+}
+
+@keyframes blink {
+  50% {
+    opacity:0
+  }
+
+}
+.apparition {
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.7s ease var(--d,0s),transform 0.7s ease var(--d,0s)
+}
+
+.apparition.in {
+  opacity:1;
+  transform:none
+}
+
+@keyframes pop {
+  from {
+    opacity:0;
+    transform:translateY(14px) scale(0.96)
+  }
+
+}
+.fenetre-modale .carte {
+  animation:pop 0.35s ease
+}
+
+.fenetre-modale {
+  animation:fade 0.25s ease
+}
+
+@keyframes fade {
+  from {
+    opacity:0
+  }
+
+}
+.element-dynamique {
+  animation:pop 0.3s ease
+}
+
+.projecteur {
+  position:relative;
+  overflow:hidden
+}
+
+.projecteur::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 0.3s;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(124,92,255,0.25),transparent 60%)
+}
+
+.projecteur:hover::before {
+  opacity:1
+}
+
+.panneau,.barre-superieure {
+  animation:fade 0.6s ease
+}
+
+.apercu-cv {
+  animation:fade 0.5s ease
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important
+  }
+
+  .apparition {
+    opacity:1;
+    transform:none
+  }
+
+}
